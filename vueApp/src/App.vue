@@ -2,24 +2,48 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
     <label>Nombre Producto</label>
-    <input v-model="name" />
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <input v-model="form.title" placeholder="nombre" />
+    <input v-model="form.image" />
+    <button class="btn btn-primary" @click="saveProduct">Enviar</button>
+    <Products :products="list"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Products from './components/Products.vue'
+import { listProducts, PostProducts } from './services/products'
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Products
   },
   data () {
     return {
       form: {
-        name: '',
+        title: '',
         image: ''
+      },
+      list: []
+    }
+  },
+  mounted () {
+    this.listarProductos()
+  },
+  methods: {
+    async listarProductos () {
+      try {
+        const { data } = await listProducts()
+        this.list = data
+      } catch (e) {
+        console.log(e)
+      }
+    },
+    async saveProduct () {
+      try {
+        await PostProducts(this.form)
+        this.listarProductos()
+      } catch (e) {
+        console.log(e)
       }
     }
   }
