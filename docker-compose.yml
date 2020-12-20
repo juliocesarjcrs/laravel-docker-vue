@@ -13,7 +13,7 @@ services:
     ports:
       - 8000:8000
     volumes:
-      - ./backend:/app/backend
+      - ./backend:/var/www
     depends_on:
       - db
     networks:

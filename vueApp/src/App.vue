@@ -1,6 +1,8 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
+    <label>Nombre Producto</label>
+    <input v-model="name" />
     <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
@@ -12,6 +14,14 @@ export default {
   name: 'App',
   components: {
     HelloWorld
+  },
+  data () {
+    return {
+      form: {
+        name: '',
+        image: ''
+      }
+    }
   }
 }
 </script>
