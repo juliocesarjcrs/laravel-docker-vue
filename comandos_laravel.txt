@@ -1,0 +1,17 @@
+php artisan make:controller ProductController --resource --model=Product
+php artisan make:migration create_product_table
+php artisan make:factory ProductFactory
+
+php artisan make:seeder ProductSeeder
+php artisan make:seeder UserSeeder
+
+php artisan db:seed
+
+Ejecutar migraciones
+php artisan migrate
+Revertir migraciones
+Para revertir la última operación de migración, puede usar el rollbackcomando. Este comando revierte el último "lote" de migraciones, que puede incluir varios archivos de migración:
+
+php artisan migrate:rollback
+
+php artisan route:l
