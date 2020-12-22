@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: podlaravel
+  labels:
+    name: podlaravel
+spec:
+  containers:
+  - name: podlaravel
+    image: juliocesarjcrs/laravel
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 8000
+# kubectl apply -f pod-laravel.yml

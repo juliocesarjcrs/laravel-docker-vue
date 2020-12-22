@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: laravel-deployment
+spec:
+  selector:
+    matchLabels:
+      app: laravel-deployment
+  template:
+    metadata:
+      labels:
+        app: podlaravel
+    spec:
+      containers:
+      - name: laravel-deployment
+        image: juliocesarjcrs/laravel
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8000
