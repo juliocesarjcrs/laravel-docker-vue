@@ -8,9 +8,11 @@ WORKDIR /app/frontendvue
 ENV PATH /app/frontendvue/node_modules/.bin:$PATH
  
 # install and cache app dependencies
+# la agregué pq no copiaba mis datos
+COPY . /app/frontendvue 
 COPY package.json /app/frontendvue/package.json
 RUN npm install
-RUN npm install @vue/cli@3.7.0 -g
+# RUN npm install @vue/cli@3.7.0 -g
  
 # start app
 CMD ["npm", "run", "serve"]

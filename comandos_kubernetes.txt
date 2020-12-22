@@ -1,0 +1,6 @@
+
+Pasos para subir a Docker Hub
+Construir la imagen
+# docker build -t juliocesarjcrs/laravel .
+#docker login
+#docker push juliocesarjcrs/laravel

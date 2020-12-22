@@ -8,12 +8,12 @@ services:
     environment: 
       DB_HOST: db
       DB_DATABASE: laravel
-      DB_USERNAME: root
+      DB_USERNAME: user
       DB_PASSWORD: root
     ports:
-      - 8000:8000
+      - 8000:80 # con el 80 es cuando es v -host
     volumes:
-      - ./backend:/var/www
+      - ./backend:/var/www/html
     depends_on:
       - db
     networks:
@@ -25,7 +25,7 @@ services:
       dockerfile: Dockerfile
     tty: true
     ports:
-    - 8080:8080
+    - 8082:8080
     volumes:
       - ./vueApp:/app/frontendvue
       - /app/frontendvue/node_modules
@@ -38,7 +38,7 @@ services:
     container_name: base_datos
     environment:
       MYSQL_DATABASE: laravel
-      MYSQL_USER: root
+      MYSQL_USER: user # para evitar el error el nombre del usurio no puede ser root ERROR 1396 (HY000) at line 1: Operation CREATE USER failed for 'root'@'%'
       MYSQL_PASSWORD: root 
       MYSQL_ROOT_PASSWORD: root
     volumes:
