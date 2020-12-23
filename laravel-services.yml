@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: laravel-services
+spec:
+  selector:
+    app: podlaravel
+  ports:
+  - port: 80
+    targetPort: 80

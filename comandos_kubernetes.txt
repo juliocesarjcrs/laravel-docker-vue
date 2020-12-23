@@ -18,3 +18,33 @@ kubectl cluster-info
 
 // ver los nodos
 kubectl get nodes
+
+----------------------------------------------------------------------
+Crear deployment
+
+kubectl apply -f .\laravel-deployment.yml
+borrar
+kubectl delete -f .\laravel-deployment.yml
+-----------------------------
+Servici0os
+kubectl describe services laravel-services
+Limpiar 
+Para eliminar el Servicio, ingrese este comando:
+
+kubectl delete services my-servic
+------------------------------
+Ingresss
+
+kubectl get ingress
+
+//-----------------------------------------------
+Ver la Ip por Docker Desktop
+
+kubectl describe node docker-desktop
+
+Con minikube
+minikube ip
+-------------------------------
+windows
+minikube docker-env
+

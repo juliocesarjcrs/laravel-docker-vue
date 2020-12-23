@@ -1,22 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: laravel-deployment
+  name: mariadb-deployment
 spec:
   selector:
     matchLabels:
-      app: podlaravel
+      app: mariadb
+  replicas: 1
   template:
     metadata:
       labels:
-        app: podlaravel
+        app: mariadb
     spec:
       containers:
-      - name: podlaravel
-        image: juliocesarjcrs/laravel
+      - name: mariadb
+        image: mariadb
         resources:
           limits:
             memory: "128Mi"
             cpu: "500m"
         ports:
-        - containerPort: 80
+        - containerPort: 3306
+        env:
+          - name: MYSQL_ROOT_PASSWORD
+            value: "123"
