@@ -13,7 +13,7 @@ COPY . /app/frontendvue
 COPY package.json /app/frontendvue/package.json
 RUN npm install
 # RUN npm install @vue/cli@3.7.0 -g
- 
+EXPOSE 8080
 # start app
 CMD ["npm", "run", "serve"]
 # FROM node:alpine
