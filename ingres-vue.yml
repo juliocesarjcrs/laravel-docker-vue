@@ -1,17 +1,22 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: vue-ingress
   annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/enable-cors: "true"
     nginx.ingress.kubernetes.io/cors-allow-methods: "PUT, GET, POST, OPTIONS"
     nginx.ingress.kubernetes.io/cors-allow-origin: "*"
     nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
 spec:
   rules:
+    # - host: mylocalhost.com
     - http:
         paths:
           - path: /
+            pathType: Prefix
             backend:
-                serviceName: vue-services
-                servicePort: 8080
+              service:
+                name: vue-services
+                port:
+                  number: 8080
