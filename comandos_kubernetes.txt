@@ -8,6 +8,10 @@ Construir la imagen
 docker build -t juliocesarjcrs/vueapp .
 #docker push juliocesarjcrs/vueapp
 
+docker build -t juliocesarjcrs/vuengnix .
+docker push juliocesarjcrs/vuengnix
+
+
 
 
 #tutorial crear clutster 
