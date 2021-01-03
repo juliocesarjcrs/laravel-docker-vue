@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\Http\Controllers\ProductController;
 use Tests\TestCase;
 
 class ExampleTest extends TestCase
@@ -17,5 +17,20 @@ class ExampleTest extends TestCase
         $response = $this->get('/');
 
         $response->assertStatus(200);
+        $collection = collect([
+            [
+                'id' => 1,
+                'nombre' => 'Juan',
+            ],
+            [
+                'id' => 2,
+                'nombre' => 'Pedro',
+            ],
+        ]
+
+        );
+        $controller = new ProductController;
+        $res = $controller->recorrer($collection);
+        // dd($res);
     }
 }

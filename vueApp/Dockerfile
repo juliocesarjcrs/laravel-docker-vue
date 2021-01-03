@@ -4,23 +4,23 @@
 # ------------------------------------------------------
 
 # base image
-# FROM node:12.2.0-alpine
+FROM node:12.2.0-alpine
  
-# # set working directory
-# WORKDIR /app/frontendvue
+# set working directory
+WORKDIR /app/frontendvue
  
-# # add `/app/node_modules/.bin` to $PATH
-# ENV PATH /app/frontendvue/node_modules/.bin:$PATH
+# add `/app/node_modules/.bin` to $PATH
+ENV PATH /app/frontendvue/node_modules/.bin:$PATH
  
-# # install and cache app dependencies
-# # la agregué pq no copiaba mis datos
-# COPY . /app/frontendvue 
-# COPY package.json /app/frontendvue/package.json
-# RUN npm install
-# # RUN npm install @vue/cli@3.7.0 -g
-# EXPOSE 8080
-# # start app
-# CMD ["npm", "run", "serve"]
+# install and cache app dependencies
+# la agregué pq no copiaba mis datos
+COPY . /app/frontendvue 
+COPY package.json /app/frontendvue/package.json
+RUN npm install
+# RUN npm install @vue/cli@3.7.0 -g
+EXPOSE 8080
+# start app
+CMD ["npm", "run", "serve"]
 
 
 # ------------------------------------------------------------------------------------
@@ -89,6 +89,6 @@
 # ----------------------------
 # http://heidloff.net/article/angular-react-vue-kubernetes
 # -----------------------------
-FROM nginx:latest
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY dist /usr/share/nginx/html
+# FROM nginx:latest
+# COPY nginx.conf /etc/nginx/conf.d/default.conf
+# COPY dist /usr/share/nginx/html

@@ -14,7 +14,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return Product::all();
+        $uno = "1";
+        $dos = "1";
+        // phpinfo();
+        return Product::take(10)->get();
     }
 
     /**
@@ -81,5 +84,12 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
+    }
+    public function recorrer($lista)
+    {
+        foreach ($lista as $key => $value) {
+            // dd($value);
+            $a =  $value["nombre"];
+        }
     }
 }

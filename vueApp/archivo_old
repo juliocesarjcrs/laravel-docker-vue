@@ -1,4 +1,4 @@
-
+# nginx.conf
 upstream mealplan {
   server laravel-services;
 }

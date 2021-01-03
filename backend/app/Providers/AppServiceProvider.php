@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use config;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -14,6 +15,8 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+        // $value = config('database.connections.mysql');
+        // dd($value);
     }
 
     /**

@@ -71,6 +71,12 @@ RUN apt-get update && apt-get install -y \
    && docker-php-ext-install zip \
    && docker-php-source delete
 
+# Install xdebug for development
+RUN    pecl install xdebug \
+    && docker-php-ext-enable xdebug
+# Copy the configuration file into xdebug, if running phpinfo() you see the loaded file is not this one, change the path accordingly. 
+COPY xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+
 COPY . /var/www/html
 COPY ./vhost.conf /etc/apache2/sites-available/000-default.conf
 

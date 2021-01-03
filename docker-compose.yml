@@ -6,16 +6,16 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     environment: 
-      DB_HOST: db
+      DB_HOST: host.docker.internal #db #192.168.56.1 #db
       DB_DATABASE: laravel
-      DB_USERNAME: user
-      DB_PASSWORD: root
+      DB_USERNAME: root #user
+      DB_PASSWORD: #root
     ports:
       - 8000:80 # con el 80 es cuando es v -host
     volumes:
       - ./backend:/var/www/html
-    depends_on:
-      - db
+    # depends_on:
+    #   - db
     networks:
       - app
   frontendvue:
@@ -23,6 +23,8 @@ services:
     build:    
       context: ./vueApp
       dockerfile: Dockerfile
+    environment:
+    - VUE_APP_URL_API=http://127.0.0.1:8000/api
     tty: true
     ports:
     - 8082:8080
@@ -33,37 +35,37 @@ services:
       - backend
     networks:
       - app
-  db:
-    image: mysql:5.7.22
-    container_name: base_datos
-    environment:
-      MYSQL_DATABASE: laravel
-      MYSQL_USER: user # para evitar el error el nombre del usurio no puede ser root ERROR 1396 (HY000) at line 1: Operation CREATE USER failed for 'root'@'%'
-      MYSQL_PASSWORD: root 
-      MYSQL_ROOT_PASSWORD: root
-    volumes:
-      - .dbdata:/var/Lib/mysql
-    networks: 
-      - app
-    ports:
-      - 33060:3306
-  phpmyadmin:
-    depends_on:
-      - db
-    image: phpmyadmin/phpmyadmin
-    restart: always
-    ports:
-      - 8081:80
-    environment:
-      PMA_HOST: db
-      MYSQL_ROOT_PASSWORD: root
-    networks: 
-      - app
+  # db:
+  #   image: mysql:5.7.22
+  #   container_name: base_datos
+  #   environment:
+  #     MYSQL_DATABASE: laravel
+  #     MYSQL_USER: user # para evitar el error el nombre del usurio no puede ser root ERROR 1396 (HY000) at line 1: Operation CREATE USER failed for 'root'@'%'
+  #     MYSQL_PASSWORD: root 
+  #     MYSQL_ROOT_PASSWORD: root
+  #   volumes:
+  #     - .dbdata:/var/Lib/mysql
+  #   networks: 
+  #     - app
+  #   ports:
+  #     - 33060:3306
+  # phpmyadmin:
+  #   depends_on:
+  #     - db
+  #   image: phpmyadmin/phpmyadmin
+  #   restart: always
+  #   ports:
+  #     - 8081:80
+  #   environment:
+  #     PMA_HOST: db
+  #     MYSQL_ROOT_PASSWORD: root
+  #   networks: 
+  #     - app
   
 networks: 
   app:
     driver: bridge
-
+# docker-compose up --build
 # docker-compose up --build
 # docker-compose exec container_name sh
 
