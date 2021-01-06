@@ -72,10 +72,13 @@ RUN apt-get update && apt-get install -y \
    && docker-php-source delete
 
 # Install xdebug for development
-RUN    pecl install xdebug \
-    && docker-php-ext-enable xdebug
-# Copy the configuration file into xdebug, if running phpinfo() you see the loaded file is not this one, change the path accordingly. 
-COPY xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+# RUN    pecl install xdebug \
+#     && docker-php-ext-enable xdebug
+# # Copy the configuration file into xdebug, if running phpinfo() you see the loaded file is not this one, change the path accordingly. 
+# COPY xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+
+RUN pecl install -f xdebug \
+&& echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini;
 
 COPY . /var/www/html
 COPY ./vhost.conf /etc/apache2/sites-available/000-default.conf

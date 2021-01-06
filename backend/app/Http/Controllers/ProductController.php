@@ -16,7 +16,11 @@ class ProductController extends Controller
     {
         $uno = "1";
         $dos = "1";
-        // phpinfo();
+        return Product::take(10)->get();
+    }
+    public function info()
+    {
+       phpinfo();
         return Product::take(10)->get();
     }
 
